@@ -1,0 +1,1229 @@
+--- /dev/null
++++ clang-10.0.1.src~patched/include/clang/Basic/BuiltinsXtensa.def
+@@ -0,0 +1,127 @@
++//===-- BuiltinsXtensa.def - Xtensa Builtin function database ----*- C++ -*-==//
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++//
++// This file defines the Xtensa-specific builtin function database. Users of
++// this file must define the BUILTIN macro to make use of this information.
++//
++//===----------------------------------------------------------------------===//
++
++// The format of this database matches clang/Basic/Builtins.def.
++
++BUILTIN(__builtin_xtensa_umul_aa_ll, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_umul_aa_lh, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_umul_aa_hl, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_umul_aa_hh, "vUiUi", "n")
++
++BUILTIN(__builtin_xtensa_mul_aa_ll, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_mul_aa_lh, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_mul_aa_hl, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_mul_aa_hh, "vUiUi", "n")
++
++BUILTIN(__builtin_xtensa_mul_ad_ll, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_mul_ad_lh, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_mul_ad_hl, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_mul_ad_hh, "vUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_mul_da_ll, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_mul_da_lh, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_mul_da_hl, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_mul_da_hh, "vIUiUi", "n")
++
++BUILTIN(__builtin_xtensa_mul_dd_ll, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_mul_dd_lh, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_mul_dd_hl, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_mul_dd_hh, "vIUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_mula_aa_ll, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_mula_aa_lh, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_mula_aa_hl, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_mula_aa_hh, "vUiUi", "n")
++
++BUILTIN(__builtin_xtensa_mula_ad_ll, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_ad_lh, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_ad_hl, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_ad_hh, "vUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_mula_da_ll, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_mula_da_lh, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_mula_da_hl, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_mula_da_hh, "vIUiUi", "n")
++
++BUILTIN(__builtin_xtensa_mula_dd_ll, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_lh, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_hl, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_hh, "vIUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_muls_aa_ll, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_muls_aa_lh, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_muls_aa_hl, "vUiUi", "n")
++BUILTIN(__builtin_xtensa_muls_aa_hh, "vUiUi", "n")
++
++BUILTIN(__builtin_xtensa_muls_ad_ll, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_muls_ad_lh, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_muls_ad_hl, "vUiIUi", "n")
++BUILTIN(__builtin_xtensa_muls_ad_hh, "vUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_muls_da_ll, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_muls_da_lh, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_muls_da_hl, "vIUiUi", "n")
++BUILTIN(__builtin_xtensa_muls_da_hh, "vIUiUi", "n")
++
++BUILTIN(__builtin_xtensa_muls_dd_ll, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_muls_dd_lh, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_muls_dd_hl, "vIUiIUi", "n")
++BUILTIN(__builtin_xtensa_muls_dd_hh, "vIUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_mula_da_ll_lddec, "vIUii**IUii", "n")
++BUILTIN(__builtin_xtensa_mula_da_lh_lddec, "vIUii**IUii", "n")
++BUILTIN(__builtin_xtensa_mula_da_hl_lddec, "vIUii**IUii", "n")
++BUILTIN(__builtin_xtensa_mula_da_hh_lddec, "vIUii**IUii", "n")
++
++BUILTIN(__builtin_xtensa_mula_da_ll_ldinc, "vIUii**IUii", "n")
++BUILTIN(__builtin_xtensa_mula_da_lh_ldinc, "vIUii**IUii", "n")
++BUILTIN(__builtin_xtensa_mula_da_hl_ldinc, "vIUii**IUii", "n")
++BUILTIN(__builtin_xtensa_mula_da_hh_ldinc, "vIUii**IUii", "n")
++
++BUILTIN(__builtin_xtensa_mula_dd_ll_lddec, "vIUii**IUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_lh_lddec, "vIUii**IUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_hl_lddec, "vIUii**IUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_hh_lddec, "vIUii**IUiIUi", "n")
++
++BUILTIN(__builtin_xtensa_mula_dd_ll_ldinc, "vIUii**IUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_lh_ldinc, "vIUii**IUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_hl_ldinc, "vIUii**IUiIUi", "n")
++BUILTIN(__builtin_xtensa_mula_dd_hh_ldinc, "vIUii**IUiIUi", "n")
++
++// Load operations
++
++BUILTIN(__builtin_xtensa_ldinc, "vIUii**", "n")
++BUILTIN(__builtin_xtensa_lddec, "vIUii**", "n")
++
++// WSR/RSR/XSR
++
++BUILTIN(__builtin_xtensa_wsr_acclo, "vUi", "n")
++BUILTIN(__builtin_xtensa_rsr_acclo, "Ui", "n")
++BUILTIN(__builtin_xtensa_xsr_acclo, "vUi*", "n")
++BUILTIN(__builtin_xtensa_wsr_acchi, "vUi", "n")
++BUILTIN(__builtin_xtensa_rsr_acchi, "Ui", "n")
++BUILTIN(__builtin_xtensa_xsr_acchi, "vUi*", "n")
++BUILTIN(__builtin_xtensa_wsr_m0, "vUi", "n")
++BUILTIN(__builtin_xtensa_rsr_m0, "Ui", "n")
++BUILTIN(__builtin_xtensa_xsr_m0, "vUi*", "n")
++BUILTIN(__builtin_xtensa_wsr_m1, "vUi", "n")
++BUILTIN(__builtin_xtensa_rsr_m1, "Ui", "n")
++BUILTIN(__builtin_xtensa_xsr_m1, "vUi*", "n")
++BUILTIN(__builtin_xtensa_wsr_m2, "vUi", "n")
++BUILTIN(__builtin_xtensa_rsr_m2, "Ui", "n")
++BUILTIN(__builtin_xtensa_xsr_m2, "vUi*", "n")
++BUILTIN(__builtin_xtensa_wsr_m3, "vUi", "n")
++BUILTIN(__builtin_xtensa_rsr_m3, "Ui", "n")
++BUILTIN(__builtin_xtensa_xsr_m3, "vUi*", "n")
++
++#undef BUILTIN
+\ No newline at end of file
+diffclang-10.0.1.src/include/clang/Basic/TargetBuiltins.h b/clang-10.0.1.src~patched/include/clang/Basic/TargetBuiltins.h
+index 0e2f075..c14f2c6 100644
+--- clang-10.0.1.src/include/clang/Basic/TargetBuiltins.h
++++ clang-10.0.1.src~patched/include/clang/Basic/TargetBuiltins.h
+@@ -209,6 +209,15 @@ namespace clang {
+     };
+   }
+ 
++  /// Xtensa builtins
++  namespace Xtensa {
++  enum {
++    LastTIBuiltin = clang::Builtin::FirstTSBuiltin - 1,
++#define BUILTIN(ID, TYPE, ATTRS) BI##ID,
++#include "clang/Basic/BuiltinsXtensa.def"
++    LastTSBuiltin
++  };
++  } // namespace Xtensa
+ } // end namespace clang.
+ 
+ #endif
+diffclang-10.0.1.src/include/clang/Basic/TargetInfo.h b/clang-10.0.1.src~patched/include/clang/Basic/TargetInfo.h
+index 3a8e355..e33de28 100644
+--- clang-10.0.1.src/include/clang/Basic/TargetInfo.h
++++ clang-10.0.1.src~patched/include/clang/Basic/TargetInfo.h
+@@ -259,7 +259,10 @@ public:
+     //     void *__overflow_arg_area;
+     //     void *__reg_save_area;
+     //   } va_list[1];
+-    SystemZBuiltinVaList
++    SystemZBuiltinVaList,
++
++    // Tensilica Xtensa
++    XtensaABIBuiltinVaList
+   };
+ 
+ protected:
+diffclang-10.0.1.src/include/clang/Sema/Sema.h b/clang-10.0.1.src~patched/include/clang/Sema/Sema.h
+index 842e496..215e190 100644
+--- clang-10.0.1.src/include/clang/Sema/Sema.h
++++ clang-10.0.1.src~patched/include/clang/Sema/Sema.h
+@@ -11717,6 +11717,7 @@ private:
+   bool CheckX86BuiltinGatherScatterScale(unsigned BuiltinID, CallExpr *TheCall);
+   bool CheckX86BuiltinFunctionCall(unsigned BuiltinID, CallExpr *TheCall);
+   bool CheckPPCBuiltinFunctionCall(unsigned BuiltinID, CallExpr *TheCall);
++  bool CheckXtensaBuiltinFunctionCall(unsigned BuiltinID, CallExpr *TheCall);
+ 
+   bool SemaBuiltinVAStart(unsigned BuiltinID, CallExpr *TheCall);
+   bool SemaBuiltinVAStartARMMicrosoft(CallExpr *Call);
+diffclang-10.0.1.src/lib/AST/ASTContext.cpp b/clang-10.0.1.src~patched/lib/AST/ASTContext.cpp
+index 1be72ef..b5c5278 100644
+--- clang-10.0.1.src/lib/AST/ASTContext.cpp
++++ clang-10.0.1.src~patched/lib/AST/ASTContext.cpp
+@@ -7805,6 +7805,51 @@ CreateSystemZBuiltinVaListDecl(const ASTContext *Context) {
+   return Context->buildImplicitTypedef(VaListTagArrayType, "__builtin_va_list");
+ }
+ 
++static TypedefDecl *
++CreateXtensaABIBuiltinVaListDecl(const ASTContext *Context) {
++  // typedef struct __va_list_tag {
++  RecordDecl *VaListTagDecl;
++
++  VaListTagDecl = Context->buildImplicitRecord("__va_list_tag");
++  VaListTagDecl->startDefinition();
++
++  const size_t NumFields = 3;
++  QualType FieldTypes[NumFields];
++  const char *FieldNames[NumFields];
++
++  // int* __va_stk;
++  FieldTypes[0] = Context->getPointerType(Context->IntTy);
++  FieldNames[0] = "__va_stk";
++
++  // int* __va_reg;
++  FieldTypes[1] = Context->getPointerType(Context->IntTy);
++  FieldNames[1] = "__va_reg";
++
++  // int __va_ndx;
++  FieldTypes[2] = Context->IntTy;
++  FieldNames[2] = "__va_ndx";
++
++  // Create fields
++  for (unsigned i = 0; i < NumFields; ++i) {
++    FieldDecl *Field = FieldDecl::Create(
++        *Context, VaListTagDecl, SourceLocation(), SourceLocation(),
++        &Context->Idents.get(FieldNames[i]), FieldTypes[i], /*TInfo=*/nullptr,
++        /*BitWidth=*/nullptr,
++        /*Mutable=*/false, ICIS_NoInit);
++    Field->setAccess(AS_public);
++    VaListTagDecl->addDecl(Field);
++  }
++  VaListTagDecl->completeDefinition();
++  Context->VaListTagDecl = VaListTagDecl;
++  QualType VaListTagType = Context->getRecordType(VaListTagDecl);
++
++  // } __va_list_tag;
++  TypedefDecl *VaListTagTypedefDecl =
++      Context->buildImplicitTypedef(VaListTagType, "__builtin_va_list");
++
++  return VaListTagTypedefDecl;
++}
++
+ static TypedefDecl *CreateVaListDecl(const ASTContext *Context,
+                                      TargetInfo::BuiltinVaListKind Kind) {
+   switch (Kind) {
+@@ -7824,6 +7869,8 @@ static TypedefDecl *CreateVaListDecl(const ASTContext *Context,
+     return CreateAAPCSABIBuiltinVaListDecl(Context);
+   case TargetInfo::SystemZBuiltinVaList:
+     return CreateSystemZBuiltinVaListDecl(Context);
++  case TargetInfo::XtensaABIBuiltinVaList:
++    return CreateXtensaABIBuiltinVaListDecl(Context);
+   }
+ 
+   llvm_unreachable("Unhandled __builtin_va_list type kind");
+diffclang-10.0.1.src/lib/Basic/CMakeLists.txt b/clang-10.0.1.src~patched/lib/Basic/CMakeLists.txt
+index 328e616..7405a66 100644
+--- clang-10.0.1.src/lib/Basic/CMakeLists.txt
++++ clang-10.0.1.src~patched/lib/Basic/CMakeLists.txt
+@@ -86,6 +86,7 @@ add_clang_library(clangBasic
+   Targets/WebAssembly.cpp
+   Targets/X86.cpp
+   Targets/XCore.cpp
++  Targets/Xtensa.cpp
+   TokenKinds.cpp
+   Version.cpp
+   Warnings.cpp
+--- /dev/null
++++ clang-10.0.1.src~patched/lib/Basic/Targets/Xtensa.cpp
+@@ -0,0 +1,40 @@
++//===--- Xtensa.cpp - Implement Xtensa target feature support -------------===//
++//
++//                     The LLVM Compiler Infrastructure
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++//
++// This file implements Xtensa TargetInfo objects.
++//
++//===----------------------------------------------------------------------===//
++
++#include "Xtensa.h"
++#include "clang/Basic/Builtins.h"
++#include "clang/Basic/MacroBuilder.h"
++#include "clang/Basic/TargetBuiltins.h"
++
++using namespace clang;
++using namespace clang::targets;
++
++const Builtin::Info XtensaTargetInfo::BuiltinInfo[] = {
++#define BUILTIN(ID, TYPE, ATTRS)                                               \
++  {#ID, TYPE, ATTRS, nullptr, ALL_LANGUAGES, nullptr},
++#include "clang/Basic/BuiltinsXtensa.def"
++};
++
++void XtensaTargetInfo::getTargetDefines(const LangOptions &Opts,
++                                        MacroBuilder &Builder) const {
++  Builder.defineMacro("__Xtensa__");
++  Builder.defineMacro("__xtensa__");
++  Builder.defineMacro("__XTENSA__");
++  Builder.defineMacro("__XTENSA_EL__");
++}
++
++ArrayRef<Builtin::Info> XtensaTargetInfo::getTargetBuiltins() const {
++  return llvm::makeArrayRef(BuiltinInfo, clang::Xtensa::LastTSBuiltin -
++                                             Builtin::FirstTSBuiltin);
++}
+--- /dev/null
++++ clang-10.0.1.src~patched/lib/Basic/Targets/Xtensa.h
+@@ -0,0 +1,111 @@
++//===--- Xtensa.h - Declare Xtensa target feature support -------*- C++ -*-===//
++//
++//                     The LLVM Compiler Infrastructure
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++//
++// This file declares Xtensa TargetInfo objects.
++//
++//===----------------------------------------------------------------------===//
++
++#ifndef LLVM_CLANG_LIB_BASIC_TARGETS_XTENSA_H
++#define LLVM_CLANG_LIB_BASIC_TARGETS_XTENSA_H
++
++#include "clang/Basic/TargetInfo.h"
++#include "clang/Basic/TargetOptions.h"
++#include "llvm/ADT/StringSwitch.h"
++#include "llvm/ADT/Triple.h"
++#include "llvm/Support/Compiler.h"
++
++#include "clang/Basic/Builtins.h"
++#include "clang/Basic/MacroBuilder.h"
++#include "clang/Basic/TargetBuiltins.h"
++
++namespace clang {
++namespace targets {
++
++class LLVM_LIBRARY_VISIBILITY XtensaTargetInfo : public TargetInfo {
++  static const Builtin::Info BuiltinInfo[];
++  std::string CPU;
++
++public:
++  XtensaTargetInfo(const llvm::Triple &Triple, const TargetOptions &)
++      : TargetInfo(Triple) {
++    BigEndian = false;
++    NoAsmVariants = true;
++    LongLongAlign = 64;
++    SuitableAlign = 32;
++    DoubleAlign = LongDoubleAlign = 64;
++    SizeType = UnsignedInt;
++    PtrDiffType = SignedInt;
++    IntPtrType = SignedInt;
++    WCharType = UnsignedChar;
++    WIntType = UnsignedInt;
++    UseZeroLengthBitfieldAlignment = true;
++    MaxAtomicPromoteWidth = MaxAtomicInlineWidth = 32;
++    resetDataLayout("e-m:e-p:32:32-i8:8:32-i16:16:32-i64:64-n32");
++  }
++
++  void getTargetDefines(const LangOptions &Opts,
++                        MacroBuilder &Builder) const override;
++
++  ArrayRef<Builtin::Info> getTargetBuiltins() const override;
++
++  BuiltinVaListKind getBuiltinVaListKind() const override {
++
++    return TargetInfo::XtensaABIBuiltinVaList;
++  }
++
++  const char *getClobbers() const override { return ""; }
++
++  ArrayRef<const char *> getGCCRegNames() const override {
++    static const char *const GCCRegNames[] = {
++        // General register name
++        "a0", "sp", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10",
++        "a11", "a12", "a13", "a14", "a15",
++        // Special register name
++        "sar"};
++    return llvm::makeArrayRef(GCCRegNames);
++  }
++
++  ArrayRef<TargetInfo::GCCRegAlias> getGCCRegAliases() const override {
++    return None;
++  }
++
++  bool validateAsmConstraint(const char *&Name,
++                             TargetInfo::ConstraintInfo &Info) const override {
++    switch (*Name) {
++    default:
++      return false;
++    case 'a':
++      Info.setAllowsRegister();
++      return true;
++    }
++    return false;
++  }
++
++  int getEHDataRegisterNumber(unsigned RegNo) const override {
++    return (RegNo < 2) ? RegNo : -1;
++  }
++
++  bool isValidCPUName(StringRef Name) const override {
++    return llvm::StringSwitch<bool>(Name)
++        .Case("esp32", true)
++        .Case("esp8266", true)
++        .Case("esp32-s2", true)
++        .Case("generic", true)
++        .Default(false);
++  }
++
++  bool setCPU(const std::string &Name) override {
++    CPU = Name;
++    return isValidCPUName(Name);
++  }
++};
++} // namespace targets
++} // namespace clang
++#endif // LLVM_CLANG_LIB_BASIC_TARGETS_XTENSA_H
+diffclang-10.0.1.src/lib/Basic/Targets.cpp b/clang-10.0.1.src~patched/lib/Basic/Targets.cpp
+index c063f8c..fcf6848 100644
+--- clang-10.0.1.src/lib/Basic/Targets.cpp
++++ clang-10.0.1.src~patched/lib/Basic/Targets.cpp
+@@ -36,6 +36,7 @@
+ #include "Targets/WebAssembly.h"
+ #include "Targets/X86.h"
+ #include "Targets/XCore.h"
++#include "Targets/Xtensa.h"
+ #include "clang/Basic/Diagnostic.h"
+ #include "llvm/ADT/StringExtras.h"
+ #include "llvm/ADT/Triple.h"
+@@ -608,6 +609,9 @@ TargetInfo *AllocateTarget(const llvm::Triple &Triple,
+     return new LinuxTargetInfo<RenderScript32TargetInfo>(Triple, Opts);
+   case llvm::Triple::renderscript64:
+     return new LinuxTargetInfo<RenderScript64TargetInfo>(Triple, Opts);
++
++  case llvm::Triple::xtensa:
++    return new XtensaTargetInfo(Triple, Opts); 
+   }
+ }
+ } // namespace targets
+diffclang-10.0.1.src/lib/CodeGen/CGOpenMPRuntime.cpp b/clang-10.0.1.src~patched/lib/CodeGen/CGOpenMPRuntime.cpp
+index 97b1779..bd4ca47 100644
+--- clang-10.0.1.src/lib/CodeGen/CGOpenMPRuntime.cpp
++++ clang-10.0.1.src~patched/lib/CodeGen/CGOpenMPRuntime.cpp
+@@ -11118,6 +11118,7 @@ bool checkContext<OMP_CTX_SET_device, OMP_CTX_kind, CodeGenModule &>(
+     case llvm::Triple::renderscript32:
+     case llvm::Triple::renderscript64:
+     case llvm::Triple::ve:
++    case llvm::Triple::xtensa:
+       return false;
+     }
+   }
+diffclang-10.0.1.src/lib/CodeGen/TargetInfo.cpp b/clang-10.0.1.src~patched/lib/CodeGen/TargetInfo.cpp
+index e2380f5..5cfb3e0 100644
+--- clang-10.0.1.src/lib/CodeGen/TargetInfo.cpp
++++ clang-10.0.1.src~patched/lib/CodeGen/TargetInfo.cpp
+@@ -9773,6 +9773,227 @@ public:
+ };
+ } // namespace
+ 
++//===----------------------------------------------------------------------===//
++// Xtensa ABI Implementation
++//===----------------------------------------------------------------------===//
++
++namespace {
++class XtensaABIInfo : public DefaultABIInfo {
++private:
++  static const int MaxNumArgGPRs = 6;
++  static const int MaxNumRetGPRs = 4;
++
++public:
++  XtensaABIInfo(CodeGen::CodeGenTypes &CGT) : DefaultABIInfo(CGT) {}
++
++  // DefaultABIInfo's classifyReturnType and classifyArgumentType are
++  // non-virtual, but computeInfo is virtual, so we overload it.
++  void computeInfo(CGFunctionInfo &FI) const override;
++
++  ABIArgInfo classifyArgumentType(QualType Ty, int &ArgGPRsLeft) const;
++
++  ABIArgInfo classifyReturnType(QualType RetTy) const;
++
++  Address EmitVAArg(CodeGenFunction &CGF, Address VAListAddr,
++                    QualType Ty) const override;
++
++  ABIArgInfo extendType(QualType Ty) const;
++};
++} // end anonymous namespace
++
++void XtensaABIInfo::computeInfo(CGFunctionInfo &FI) const {
++  QualType RetTy = FI.getReturnType();
++  if (!getCXXABI().classifyReturnType(FI))
++    FI.getReturnInfo() = classifyReturnType(RetTy);
++
++  int ArgGPRsLeft = MaxNumArgGPRs;
++  for (auto &ArgInfo : FI.arguments()) {
++    ArgInfo.info = classifyArgumentType(ArgInfo.type, ArgGPRsLeft);
++  }
++}
++
++ABIArgInfo XtensaABIInfo::classifyArgumentType(QualType Ty,
++                                               int &ArgGPRsLeft) const {
++  assert(ArgGPRsLeft <= MaxNumArgGPRs && "Arg GPR tracking underflow");
++  Ty = useFirstFieldIfTransparentUnion(Ty);
++  // Structures with either a non-trivial destructor or a non-trivial
++  // copy constructor are always passed indirectly.
++  if (CGCXXABI::RecordArgABI RAA = getRecordArgABI(Ty, getCXXABI())) {
++    if (ArgGPRsLeft)
++      ArgGPRsLeft -= 1;
++    return getNaturalAlignIndirect(Ty, /*ByVal=*/RAA ==
++                                           CGCXXABI::RAA_DirectInMemory);
++  }
++
++  // Ignore empty structs/unions.
++  if (isEmptyRecord(getContext(), Ty, true))
++    return ABIArgInfo::getIgnore();
++
++  uint64_t Size = getContext().getTypeSize(Ty);
++  uint64_t NeededAlign = getContext().getTypeAlign(Ty);
++  bool MustUseStack = false;
++  int NeededArgGPRs = (Size + 31) / 32;
++
++  if (NeededAlign == (2 * 32))
++    NeededArgGPRs += (ArgGPRsLeft % 2);
++
++  // Put on stack objects which are not fit to 6 registers,
++  // also on stack object which alignment more then 16 bytes and
++  // object with 16-byte alignment if it isn't the first argument.
++  if ((NeededArgGPRs > ArgGPRsLeft) || (NeededAlign > (4 * 32)) ||
++      ((ArgGPRsLeft < 6) && (NeededAlign == (4 * 32)))) {
++    MustUseStack = true;
++    NeededArgGPRs = ArgGPRsLeft;
++  }
++  ArgGPRsLeft -= NeededArgGPRs;
++
++  if (!isAggregateTypeForABI(Ty) && !Ty->isVectorType() && !MustUseStack) {
++    // Treat an enum type as its underlying type.
++    if (const EnumType *EnumTy = Ty->getAs<EnumType>())
++      Ty = EnumTy->getDecl()->getIntegerType();
++    // All integral types are promoted to XLen width, unless passed on the
++    // stack.
++    if (Size < 32 && Ty->isIntegralOrEnumerationType() && !MustUseStack) {
++      return extendType(Ty);
++    }
++    if (Size == 64)
++      return ABIArgInfo::getDirect(llvm::IntegerType::get(getVMContext(), 64));
++    return ABIArgInfo::getDirect(llvm::IntegerType::get(getVMContext(), 32));
++  }
++
++  // Aggregates which are <= 6*32 will be passed in registers if possible,
++  // so coerce to integers.
++  if ((Size <= (MaxNumArgGPRs * 32)) && (!MustUseStack)) {
++    if (Size <= 32) {
++      return ABIArgInfo::getDirect(llvm::IntegerType::get(getVMContext(), 32));
++    } else if (NeededAlign == (2 * 32)) {
++      return ABIArgInfo::getDirect(llvm::ArrayType::get(
++          llvm::IntegerType::get(getVMContext(), 64), NeededArgGPRs / 2));
++    } else {
++      return ABIArgInfo::getDirect(llvm::ArrayType::get(
++          llvm::IntegerType::get(getVMContext(), 32), NeededArgGPRs));
++    }
++  }
++#undef MAX_STRUCT_IN_REGS_SIZE
++  return getNaturalAlignIndirect(Ty, /*ByVal=*/true);
++}
++
++ABIArgInfo XtensaABIInfo::classifyReturnType(QualType RetTy) const {
++  if (RetTy->isVoidType())
++    return ABIArgInfo::getIgnore();
++  int ArgGPRsLeft = MaxNumRetGPRs;
++  // The rules for return and argument types are the same, so defer to
++  // classifyArgumentType.
++  return classifyArgumentType(RetTy, ArgGPRsLeft);
++}
++
++Address XtensaABIInfo::EmitVAArg(CodeGenFunction &CGF, Address VAListAddr,
++                                 QualType Ty) const {
++  // The va_list structure memory layout:
++  // struct __va_list_tag {
++  //   int32_t *va_stk;
++  //   int32_t *va_reg;
++  //   int32_t va_ndx;
++  // };
++  CGBuilderTy &Builder = CGF.Builder;
++
++  Address OverflowAreaPtr = Builder.CreateStructGEP(VAListAddr, 0, "__va_stk");
++  Address OverflowArea = Address(Builder.CreateLoad(OverflowAreaPtr, ""),
++                                 CharUnits::fromQuantity(4));
++  Address RegSaveAreaPtr = Builder.CreateStructGEP(VAListAddr, 1, "__va_reg");
++  Address RegSaveArea = Address(Builder.CreateLoad(RegSaveAreaPtr, ""),
++                                CharUnits::fromQuantity(4));
++  Address ARAreaPtr = Builder.CreateStructGEP(VAListAddr, 2, "__va_ndx");
++  llvm::Value *ARIndex = Builder.CreateLoad(ARAreaPtr, "");
++
++  ARIndex = Builder.CreateLShr(ARIndex, Builder.getInt32(2));
++
++  unsigned Align = getContext().getTypeAlign(Ty) / 32;
++  unsigned Size = (getContext().getTypeSize(Ty) + 31) / 32;
++
++  if (Align > 1) {
++    ARIndex = Builder.CreateAdd(ARIndex, Builder.getInt32(Align - 1));
++    ARIndex =
++        Builder.CreateAnd(ARIndex, Builder.getInt32((uint32_t) ~(Align - 1)));
++  }
++
++  llvm::Value *ARIndexNext = Builder.CreateAdd(ARIndex, Builder.getInt32(Size));
++  Builder.CreateStore(Builder.CreateShl(ARIndexNext, Builder.getInt32(2)),
++                      ARAreaPtr);
++
++  const unsigned OverflowLimit = 6;
++  llvm::Value *CC = Builder.CreateICmpULE(
++      ARIndexNext, Builder.getInt32(OverflowLimit), "cond");
++
++  llvm::BasicBlock *UsingRegSaveArea =
++      CGF.createBasicBlock("using_regsavearea");
++  llvm::BasicBlock *UsingOverflow = CGF.createBasicBlock("using_overflow");
++  llvm::BasicBlock *Cont = CGF.createBasicBlock("cont");
++
++  Builder.CreateCondBr(CC, UsingRegSaveArea, UsingOverflow);
++
++  llvm::Type *DirectTy = CGF.ConvertType(Ty);
++
++  // Case 1: consume registers.
++  Address RegAddr = Address::invalid();
++  {
++    CGF.EmitBlock(UsingRegSaveArea);
++
++    CharUnits RegSize = CharUnits::fromQuantity(4);
++    RegSaveArea =
++        Address(Builder.CreateInBoundsGEP(CGF.Int32Ty, RegSaveArea.getPointer(),
++                                          ARIndex),
++                RegSaveArea.getAlignment().alignmentOfArrayElement(RegSize));
++    RegAddr = Builder.CreateElementBitCast(RegSaveArea, DirectTy);
++    CGF.EmitBranch(Cont);
++  }
++
++  // Case 2: consume space in the overflow area.
++  Address MemAddr = Address::invalid();
++  {
++    CGF.EmitBlock(UsingOverflow);
++    llvm::Value *CC1 = Builder.CreateICmpULE(
++        ARIndex, Builder.getInt32(OverflowLimit), "cond_overflow");
++
++    llvm::Value *ARIndexOff = Builder.CreateSelect(
++        CC1, Builder.CreateSub(Builder.getInt32(8), ARIndex),
++        Builder.getInt32(0));
++
++    llvm::Value *ARIndexCorr = Builder.CreateAdd(ARIndex, ARIndexOff);
++    llvm::Value *ARIndexNextCorr = Builder.CreateAdd(ARIndexNext, ARIndexOff);
++    Builder.CreateStore(Builder.CreateShl(ARIndexNextCorr, Builder.getInt32(2)),
++                        ARAreaPtr);
++
++    CharUnits RegSize = CharUnits::fromQuantity(4);
++    OverflowArea =
++        Address(Builder.CreateInBoundsGEP(
++                    CGF.Int32Ty, OverflowArea.getPointer(), ARIndexCorr),
++                OverflowArea.getAlignment().alignmentOfArrayElement(RegSize));
++    MemAddr = Builder.CreateElementBitCast(OverflowArea, DirectTy);
++    CGF.EmitBranch(Cont);
++  }
++
++  CGF.EmitBlock(Cont);
++
++  // Merge the cases with a phi.
++  Address Result =
++      emitMergePHI(CGF, RegAddr, UsingRegSaveArea, MemAddr, UsingOverflow, "");
++
++  return Result;
++}
++
++ABIArgInfo XtensaABIInfo::extendType(QualType Ty) const {
++  return ABIArgInfo::getExtend(Ty);
++}
++
++namespace {
++class XtensaTargetCodeGenInfo : public TargetCodeGenInfo {
++public:
++  XtensaTargetCodeGenInfo(CodeGen::CodeGenTypes &CGT)
++      : TargetCodeGenInfo(new XtensaABIInfo(CGT)) {}
++};
++} // namespace
++
+ //===----------------------------------------------------------------------===//
+ // Driver code
+ //===----------------------------------------------------------------------===//
+@@ -9960,6 +10181,8 @@ const TargetCodeGenInfo &CodeGenModule::getTargetCodeGenInfo() {
+   case llvm::Triple::spir:
+   case llvm::Triple::spir64:
+     return SetCGInfo(new SPIRTargetCodeGenInfo(Types));
++  case llvm::Triple::xtensa:
++    return SetCGInfo(new XtensaTargetCodeGenInfo(Types));
+   }
+ }
+ 
+diffclang-10.0.1.src/lib/Driver/CMakeLists.txt b/clang-10.0.1.src~patched/lib/Driver/CMakeLists.txt
+index 6f25d35..cb13c64 100644
+--- clang-10.0.1.src/lib/Driver/CMakeLists.txt
++++ clang-10.0.1.src~patched/lib/Driver/CMakeLists.txt
+@@ -70,6 +70,7 @@ add_clang_library(clangDriver
+   ToolChains/WebAssembly.cpp
+   ToolChains/XCore.cpp
+   ToolChains/PPCLinux.cpp
++  ToolChains/Xtensa.cpp
+   ToolChains/InterfaceStubs.cpp
+   Types.cpp
+   XRayArgs.cpp
+diffclang-10.0.1.src/lib/Driver/Driver.cpp b/clang-10.0.1.src~patched/lib/Driver/Driver.cpp
+index fb8335a..743a1e4 100644
+--- clang-10.0.1.src/lib/Driver/Driver.cpp
++++ clang-10.0.1.src~patched/lib/Driver/Driver.cpp
+@@ -45,6 +45,7 @@
+ #include "ToolChains/TCE.h"
+ #include "ToolChains/WebAssembly.h"
+ #include "ToolChains/XCore.h"
++#include "ToolChains/Xtensa.h"
+ #include "clang/Basic/Version.h"
+ #include "clang/Config/config.h"
+ #include "clang/Driver/Action.h"
+@@ -4934,6 +4935,9 @@ const ToolChain &Driver::getToolChain(const ArgList &Args,
+       case llvm::Triple::riscv64:
+         TC = std::make_unique<toolchains::RISCVToolChain>(*this, Target, Args);
+         break;
++      case llvm::Triple::xtensa:
++        TC = std::make_unique<toolchains::XtensaToolChain>(*this, Target, Args);
++        break;
+       default:
+         if (Target.getVendor() == llvm::Triple::Myriad)
+           TC = std::make_unique<toolchains::MyriadToolChain>(*this, Target,
+diffclang-10.0.1.src/lib/Driver/ToolChains/CommonArgs.cpp b/clang-10.0.1.src~patched/lib/Driver/ToolChains/CommonArgs.cpp
+index 37ec734..ac23e73 100644
+--- clang-10.0.1.src/lib/Driver/ToolChains/CommonArgs.cpp
++++ clang-10.0.1.src~patched/lib/Driver/ToolChains/CommonArgs.cpp
+@@ -310,6 +310,7 @@ std::string tools::getCPUName(const ArgList &Args, const llvm::Triple &T,
+   case llvm::Triple::sparc:
+   case llvm::Triple::sparcel:
+   case llvm::Triple::sparcv9:
++  case llvm::Triple::xtensa:
+     if (const Arg *A = Args.getLastArg(options::OPT_mcpu_EQ))
+       return A->getValue();
+     return "";
+diffclang-10.0.1.src/lib/Driver/ToolChains/Gnu.cpp b/clang-10.0.1.src~patched/lib/Driver/ToolChains/Gnu.cpp
+index e8ef881..bb509a7 100644
+--- clang-10.0.1.src/lib/Driver/ToolChains/Gnu.cpp
++++ clang-10.0.1.src~patched/lib/Driver/ToolChains/Gnu.cpp
+@@ -2106,6 +2106,8 @@ void Generic_GCC::GCCInstallationDetector::AddDefaultGCCPrefixes(
+       "s390x-linux-gnu", "s390x-unknown-linux-gnu", "s390x-ibm-linux-gnu",
+       "s390x-suse-linux", "s390x-redhat-linux"};
+ 
++  static const char *const XtensaLibDirs[] = {"/lib"};
++  static const char *const XtensaTriples[] = {"xtensa-unknown-elf"};
+ 
+   using std::begin;
+   using std::end;
+@@ -2353,6 +2355,10 @@ void Generic_GCC::GCCInstallationDetector::AddDefaultGCCPrefixes(
+     LibDirs.append(begin(SystemZLibDirs), end(SystemZLibDirs));
+     TripleAliases.append(begin(SystemZTriples), end(SystemZTriples));
+     break;
++  case llvm::Triple::xtensa:
++    LibDirs.append(begin(XtensaLibDirs), end(XtensaLibDirs));
++    TripleAliases.append(begin(XtensaTriples), end(XtensaTriples));
++    break;
+   default:
+     // By default, just rely on the standard lib directories and the original
+     // triple.
+--- /dev/null
++++ clang-10.0.1.src~patched/lib/Driver/ToolChains/Xtensa.cpp
+@@ -0,0 +1,272 @@
++//===--- Xtensa.cpp - Xtensa ToolChain Implementations ----------*- C++ -*-===//
++//
++//                     The LLVM Compiler Infrastructure
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++
++#include "Xtensa.h"
++#include "CommonArgs.h"
++#include "InputInfo.h"
++#include "clang/Basic/Cuda.h"
++#include "clang/Config/config.h"
++#include "clang/Driver/Compilation.h"
++#include "clang/Driver/Distro.h"
++#include "clang/Driver/Driver.h"
++#include "clang/Driver/DriverDiagnostic.h"
++#include "clang/Driver/Options.h"
++#include "llvm/Option/ArgList.h"
++#include "llvm/Support/Path.h"
++#include "llvm/Support/VirtualFileSystem.h"
++#include <system_error>
++
++using namespace clang::driver;
++using namespace clang::driver::tools;
++using namespace clang::driver::toolchains;
++using namespace clang;
++using namespace llvm::opt;
++
++XtensaGCCToolchainDetector::XtensaGCCToolchainDetector(
++    const Driver &D, const llvm::Triple &HostTriple,
++    const llvm::opt::ArgList &Args) {
++  std::string InstalledDir;
++  InstalledDir = D.getInstalledDir();
++  StringRef CPUName = XtensaToolChain::GetTargetCPUVersion(Args);
++  std::string Dir;
++  std::string ToolchainName;
++  std::string ToolchainDir;
++
++  if (CPUName.equals("esp32"))
++    ToolchainName = "xtensa-esp32-elf";
++  else if (CPUName.equals("esp32-s2"))
++    ToolchainName = "xtensa-esp32s2-elf";
++  else if (CPUName.equals("esp8266"))
++    ToolchainName = "xtensa-lx106-elf";
++
++  Slash = llvm::sys::path::get_separator().str();
++
++  ToolchainDir = InstalledDir + Slash + "..";
++  Dir = ToolchainDir + Slash + "lib" + Slash + "gcc" + Slash + ToolchainName +
++        Slash;
++  GCCLibAndIncVersion = "";
++
++  if (D.getVFS().exists(Dir)) {
++    std::error_code EC;
++    for (llvm::vfs::directory_iterator LI = D.getVFS().dir_begin(Dir, EC), LE;
++         !EC && LI != LE; LI = LI.increment(EC)) {
++      StringRef VersionText = llvm::sys::path::filename(LI->path());
++      auto GCCVersion = Generic_GCC::GCCVersion::Parse(VersionText);
++      if (GCCVersion.Major == -1)
++        continue;
++      GCCLibAndIncVersion = GCCVersion.Text;
++    }
++    if (GCCLibAndIncVersion == "")
++      llvm_unreachable("Unexpected Xtensa GCC toolchain version");
++
++  } else {
++    // Unable to find Xtensa GCC toolchain;
++    GCCToolchainName = "";
++    return;
++  }
++  GCCToolchainDir = ToolchainDir;
++  GCCToolchainName = ToolchainName;
++}
++
++/// Xtensa Toolchain
++XtensaToolChain::XtensaToolChain(const Driver &D, const llvm::Triple &Triple,
++                                 const ArgList &Args)
++    : Generic_ELF(D, Triple, Args), XtensaGCCToolchain(D, getTriple(), Args) {
++  for (auto *A : Args) {
++    std::string Str = A->getAsString(Args);
++    if (!Str.compare("-mlongcalls"))
++      A->claim();
++    if (!Str.compare("-fno-tree-switch-conversion"))
++      A->claim();
++
++    // Currently don't use integrated assembler for assembler input files
++    if ((IsIntegratedAsm) && (Str.length() > 2)) {
++      std::string ExtSubStr = Str.substr(Str.length() - 2);
++      if (!ExtSubStr.compare(".s"))
++        IsIntegratedAsm = false;
++      if (!ExtSubStr.compare(".S"))
++        IsIntegratedAsm = false;
++    }
++  }
++
++  // Currently don't use integrated assembler for assembler input files
++  if (IsIntegratedAsm) {
++    if (Args.getLastArgValue(options::OPT_x).equals("assembler"))
++      IsIntegratedAsm = false;
++
++    if (Args.getLastArgValue(options::OPT_x).equals("assembler-with-cpp"))
++      IsIntegratedAsm = false;
++  }
++}
++
++Tool *XtensaToolChain::buildLinker() const {
++  return new tools::Xtensa::Linker(*this);
++}
++
++Tool *XtensaToolChain::buildAssembler() const {
++  return new tools::Xtensa::Assembler(*this);
++}
++
++void XtensaToolChain::AddClangSystemIncludeArgs(const ArgList &DriverArgs,
++                                                ArgStringList &CC1Args) const {
++  if (DriverArgs.hasArg(clang::driver::options::OPT_nostdinc) ||
++      DriverArgs.hasArg(options::OPT_nostdlibinc))
++    return;
++
++  if (!XtensaGCCToolchain.IsValid())
++    return;
++
++  std::string Slash = XtensaGCCToolchain.Slash;
++
++  std::string Path1 = getDriver().ResourceDir.c_str() + Slash + "include";
++  std::string Path2 =
++      XtensaGCCToolchain.GCCToolchainDir + Slash + "lib" + Slash + "gcc" +
++      Slash + XtensaGCCToolchain.GCCToolchainName + Slash +
++      XtensaGCCToolchain.GCCLibAndIncVersion + Slash + "include";
++  std::string Path3 =
++      XtensaGCCToolchain.GCCToolchainDir + Slash + "lib" + Slash + "gcc" +
++      Slash + XtensaGCCToolchain.GCCToolchainName + Slash +
++      XtensaGCCToolchain.GCCLibAndIncVersion + Slash + "include-fixed";
++  std::string Path4 = XtensaGCCToolchain.GCCToolchainDir + Slash +
++                      XtensaGCCToolchain.GCCToolchainName + Slash +
++                      "sys-include";
++  std::string Path5 = XtensaGCCToolchain.GCCToolchainDir + Slash +
++                      XtensaGCCToolchain.GCCToolchainName + Slash + "include";
++
++  const StringRef Paths[] = {Path1, Path2, Path3, Path4, Path5};
++  addSystemIncludes(DriverArgs, CC1Args, Paths);
++}
++
++void XtensaToolChain::addLibStdCxxIncludePaths(
++    const llvm::opt::ArgList &DriverArgs,
++    llvm::opt::ArgStringList &CC1Args) const {
++  if (!XtensaGCCToolchain.IsValid())
++    return;
++
++  std::string Slash = XtensaGCCToolchain.Slash;
++
++  std::string BaseDir = XtensaGCCToolchain.GCCToolchainDir + Slash +
++                        XtensaGCCToolchain.GCCToolchainName + Slash +
++                        "include" + Slash + "c++" + Slash +
++                        XtensaGCCToolchain.GCCLibAndIncVersion;
++  std::string TargetDir = BaseDir + Slash + XtensaGCCToolchain.GCCToolchainName;
++  addLibStdCXXIncludePaths(BaseDir, "", "", "", "", "", DriverArgs, CC1Args);
++  addLibStdCXXIncludePaths(TargetDir, "", "", "", "", "", DriverArgs, CC1Args);
++  TargetDir = BaseDir + Slash + "backward";
++  addLibStdCXXIncludePaths(TargetDir, "", "", "", "", "", DriverArgs, CC1Args);
++}
++
++ToolChain::CXXStdlibType
++XtensaToolChain::GetCXXStdlibType(const ArgList &Args) const {
++  Arg *A = Args.getLastArg(options::OPT_stdlib_EQ);
++  if (!A)
++    return ToolChain::CST_Libstdcxx;
++
++  StringRef Value = A->getValue();
++  if (Value != "libstdc++")
++    getDriver().Diag(diag::err_drv_invalid_stdlib_name) << A->getAsString(Args);
++
++  return ToolChain::CST_Libstdcxx;
++}
++
++const StringRef XtensaToolChain::GetTargetCPUVersion(const ArgList &Args) {
++  if (Arg *A = Args.getLastArg(clang::driver::options::OPT_mcpu_EQ)) {
++    StringRef CPUName = A->getValue();
++    return CPUName;
++  }
++  return "esp32";
++}
++
++void tools::Xtensa::Assembler::ConstructJob(Compilation &C, const JobAction &JA,
++                                            const InputInfo &Output,
++                                            const InputInfoList &Inputs,
++                                            const ArgList &Args,
++                                            const char *LinkingOutput) const {
++  const auto &TC =
++      static_cast<const toolchains::XtensaToolChain &>(getToolChain());
++
++  if (!TC.XtensaGCCToolchain.IsValid())
++    llvm_unreachable("Unable to find Xtensa GCC assembler");
++
++  claimNoWarnArgs(Args);
++  ArgStringList CmdArgs;
++
++  CmdArgs.push_back("-o");
++  CmdArgs.push_back(Output.getFilename());
++
++  CmdArgs.push_back("-c");
++
++  if (Args.hasArg(options::OPT_v))
++    CmdArgs.push_back("-v");
++
++  if (Arg *A = Args.getLastArg(options::OPT_g_Group))
++    if (!A->getOption().matches(options::OPT_g0))
++      CmdArgs.push_back("-g");
++
++  if (Args.hasFlag(options::OPT_fverbose_asm, options::OPT_fno_verbose_asm,
++                   false))
++    CmdArgs.push_back("-fverbose-asm");
++
++  Args.AddAllArgValues(CmdArgs, options::OPT_Wa_COMMA, options::OPT_Xassembler);
++
++  for (const auto &II : Inputs)
++    CmdArgs.push_back(II.getFilename());
++
++  std::string Slash = TC.XtensaGCCToolchain.Slash;
++
++  const char *Asm =
++      Args.MakeArgString(getToolChain().getDriver().Dir + Slash +
++                         TC.XtensaGCCToolchain.GCCToolchainName + "-as");
++  C.addCommand(std::make_unique<Command>(JA, *this, Asm, CmdArgs, Inputs));
++}
++
++void Xtensa::Linker::ConstructJob(Compilation &C, const JobAction &JA,
++                                  const InputInfo &Output,
++                                  const InputInfoList &Inputs,
++                                  const ArgList &Args,
++                                  const char *LinkingOutput) const {
++  const auto &TC =
++      static_cast<const toolchains::XtensaToolChain &>(getToolChain());
++
++  if (!TC.XtensaGCCToolchain.IsValid())
++    llvm_unreachable("Unable to find Xtensa GCC linker");
++
++  std::string Slash = TC.XtensaGCCToolchain.Slash;
++
++  std::string Linker = getToolChain().getDriver().Dir + Slash +
++                       TC.XtensaGCCToolchain.GCCToolchainName + "-ld";
++  ArgStringList CmdArgs;
++
++  Args.AddAllArgs(CmdArgs,
++                  {options::OPT_T_Group, options::OPT_e, options::OPT_s,
++                   options::OPT_L, options::OPT_t, options::OPT_u_Group});
++
++  AddLinkerInputs(getToolChain(), Inputs, Args, CmdArgs, JA);
++
++  std::string Libs = TC.XtensaGCCToolchain.GCCToolchainDir + Slash + "lib" +
++                     Slash + "gcc" + Slash +
++                     TC.XtensaGCCToolchain.GCCToolchainName + Slash +
++                     TC.XtensaGCCToolchain.GCCLibAndIncVersion + Slash;
++  CmdArgs.push_back("-L");
++  CmdArgs.push_back(Args.MakeArgString(Libs));
++
++  Libs = TC.XtensaGCCToolchain.GCCToolchainDir + Slash +
++         TC.XtensaGCCToolchain.GCCToolchainName + Slash + "lib" + Slash;
++  CmdArgs.push_back("-L");
++  CmdArgs.push_back(Args.MakeArgString(Libs));
++
++  CmdArgs.push_back("-v");
++
++  CmdArgs.push_back("-o");
++  CmdArgs.push_back(Output.getFilename());
++  C.addCommand(std::make_unique<Command>(JA, *this, Args.MakeArgString(Linker),
++                                         CmdArgs, Inputs));
++}
++
+--- /dev/null
++++ clang-10.0.1.src~patched/lib/Driver/ToolChains/Xtensa.h
+@@ -0,0 +1,94 @@
++//===--- Xtensa.h - Xtensa Tool and ToolChain Implementations ---*- C++ -*-===//
++//
++//                     The LLVM Compiler Infrastructure
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++
++#ifndef LLVM_CLANG_LIB_DRIVER_TOOLCHAINS_Xtensa_H
++#define LLVM_CLANG_LIB_DRIVER_TOOLCHAINS_Xtensa_H
++
++#include "Gnu.h"
++#include "InputInfo.h"
++#include "clang/Driver/Tool.h"
++#include "clang/Driver/ToolChain.h"
++
++namespace clang {
++namespace driver {
++namespace toolchains {
++
++class XtensaGCCToolchainDetector {
++public:
++  std::string GCCLibAndIncVersion;
++  std::string GCCToolchainName;
++  std::string GCCToolchainDir;
++  std::string Slash;
++
++  XtensaGCCToolchainDetector(const Driver &D, const llvm::Triple &HostTriple,
++                             const llvm::opt::ArgList &Args);
++
++  bool IsValid() const { return GCCToolchainName != ""; }
++};
++
++class LLVM_LIBRARY_VISIBILITY XtensaToolChain : public Generic_ELF {
++protected:
++  Tool *buildLinker() const override;
++  Tool *buildAssembler() const override;
++
++public:
++  XtensaToolChain(const Driver &D, const llvm::Triple &Triple,
++                  const llvm::opt::ArgList &Args);
++  void
++  AddClangSystemIncludeArgs(const llvm::opt::ArgList &DriverArgs,
++                            llvm::opt::ArgStringList &CC1Args) const override;
++  void
++  addLibStdCxxIncludePaths(const llvm::opt::ArgList &DriverArgs,
++                           llvm::opt::ArgStringList &CC1Args) const override;
++  CXXStdlibType GetCXXStdlibType(const llvm::opt::ArgList &Args) const override;
++  bool IsIntegratedAssemblerDefault() const override {
++    return (IsIntegratedAsm || (XtensaGCCToolchain.GCCToolchainName == ""));
++  }
++
++  static const StringRef GetTargetCPUVersion(const llvm::opt::ArgList &Args);
++
++  XtensaGCCToolchainDetector XtensaGCCToolchain;
++  bool IsIntegratedAsm = true;
++};
++
++} // end namespace toolchains
++
++namespace tools {
++namespace Xtensa {
++class LLVM_LIBRARY_VISIBILITY Linker : public GnuTool {
++public:
++  Linker(const ToolChain &TC)
++      : GnuTool("Xtensa::Linker", "xtensa-esp32-elf-ld", TC) {}
++  bool hasIntegratedCPP() const override { return false; }
++  bool isLinkJob() const override { return true; }
++  void ConstructJob(Compilation &C, const JobAction &JA,
++                    const InputInfo &Output, const InputInfoList &Inputs,
++                    const llvm::opt::ArgList &TCArgs,
++                    const char *LinkingOutput) const override;
++};
++
++class LLVM_LIBRARY_VISIBILITY Assembler : public Tool {
++public:
++  Assembler(const ToolChain &TC)
++      : Tool("Xtensa::Assembler", "xtensa-esp32-elf-as", TC) {}
++
++  bool hasIntegratedCPP() const override { return false; }
++  void ConstructJob(Compilation &C, const JobAction &JA,
++                    const InputInfo &Output, const InputInfoList &Inputs,
++                    const llvm::opt::ArgList &TCArgs,
++                    const char *LinkingOutput) const override;
++};
++
++} // end namespace Xtensa
++} // end namespace tools
++} // end namespace driver
++} // end namespace clang
++
++#endif // LLVM_CLANG_LIB_DRIVER_TOOLCHAINS_Xtensa_H
+diffclang-10.0.1.src/lib/Sema/SemaChecking.cpp b/clang-10.0.1.src~patched/lib/Sema/SemaChecking.cpp
+index 7474202..bd1a1fb 100644
+--- clang-10.0.1.src/lib/Sema/SemaChecking.cpp
++++ clang-10.0.1.src~patched/lib/Sema/SemaChecking.cpp
+@@ -1662,6 +1662,10 @@ Sema::CheckBuiltinFunctionCall(FunctionDecl *FDecl, unsigned BuiltinID,
+         if (CheckPPCBuiltinFunctionCall(BuiltinID, TheCall))
+           return ExprError();
+         break;
++      case llvm::Triple::xtensa:
++        if (CheckXtensaBuiltinFunctionCall(BuiltinID, TheCall))
++          return ExprError();
++        break;
+       default:
+         break;
+     }
+@@ -3483,6 +3487,83 @@ bool Sema::CheckSystemZBuiltinFunctionCall(unsigned BuiltinID,
+   return SemaBuiltinConstantArgRange(TheCall, i, l, u);
+ }
+ 
++bool Sema::CheckXtensaBuiltinFunctionCall(unsigned BuiltinID,
++                                          CallExpr *TheCall) {
++  unsigned i = 0, l = 0, u = 0;
++  switch (BuiltinID) {
++  default:
++    return false;
++  case Xtensa::BI__builtin_xtensa_mul_ad_ll:
++  case Xtensa::BI__builtin_xtensa_mul_ad_lh:
++  case Xtensa::BI__builtin_xtensa_mul_ad_hl:
++  case Xtensa::BI__builtin_xtensa_mul_ad_hh:
++  case Xtensa::BI__builtin_xtensa_mula_ad_ll:
++  case Xtensa::BI__builtin_xtensa_mula_ad_lh:
++  case Xtensa::BI__builtin_xtensa_mula_ad_hl:
++  case Xtensa::BI__builtin_xtensa_mula_ad_hh:
++  case Xtensa::BI__builtin_xtensa_muls_ad_ll:
++  case Xtensa::BI__builtin_xtensa_muls_ad_lh:
++  case Xtensa::BI__builtin_xtensa_muls_ad_hl:
++  case Xtensa::BI__builtin_xtensa_muls_ad_hh:
++    i = 1;
++    l = 2;
++    u = 3;
++    break;
++  case Xtensa::BI__builtin_xtensa_mul_da_ll:
++  case Xtensa::BI__builtin_xtensa_mul_da_lh:
++  case Xtensa::BI__builtin_xtensa_mul_da_hl:
++  case Xtensa::BI__builtin_xtensa_mul_da_hh:
++  case Xtensa::BI__builtin_xtensa_mula_da_ll:
++  case Xtensa::BI__builtin_xtensa_mula_da_lh:
++  case Xtensa::BI__builtin_xtensa_mula_da_hl:
++  case Xtensa::BI__builtin_xtensa_mula_da_hh:
++  case Xtensa::BI__builtin_xtensa_muls_da_ll:
++  case Xtensa::BI__builtin_xtensa_muls_da_lh:
++  case Xtensa::BI__builtin_xtensa_muls_da_hl:
++  case Xtensa::BI__builtin_xtensa_muls_da_hh:
++    i = 0;
++    l = 0;
++    u = 1;
++    break;
++  case Xtensa::BI__builtin_xtensa_mul_dd_ll:
++  case Xtensa::BI__builtin_xtensa_mul_dd_lh:
++  case Xtensa::BI__builtin_xtensa_mul_dd_hl:
++  case Xtensa::BI__builtin_xtensa_mul_dd_hh:
++  case Xtensa::BI__builtin_xtensa_mula_dd_ll:
++  case Xtensa::BI__builtin_xtensa_mula_dd_lh:
++  case Xtensa::BI__builtin_xtensa_mula_dd_hl:
++  case Xtensa::BI__builtin_xtensa_mula_dd_hh:
++  case Xtensa::BI__builtin_xtensa_muls_dd_ll:
++  case Xtensa::BI__builtin_xtensa_muls_dd_lh:
++  case Xtensa::BI__builtin_xtensa_muls_dd_hl:
++  case Xtensa::BI__builtin_xtensa_muls_dd_hh:
++    return SemaBuiltinConstantArgRange(TheCall, 0, 0, 1) ||
++           SemaBuiltinConstantArgRange(TheCall, 1, 2, 3);
++  case Xtensa::BI__builtin_xtensa_mula_da_ll_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_da_lh_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_da_hl_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_da_hh_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_da_ll_ldinc:
++  case Xtensa::BI__builtin_xtensa_mula_da_lh_ldinc:
++  case Xtensa::BI__builtin_xtensa_mula_da_hl_ldinc:
++  case Xtensa::BI__builtin_xtensa_mula_da_hh_ldinc:
++    return SemaBuiltinConstantArgRange(TheCall, 0, 0, 3) ||
++           SemaBuiltinConstantArgRange(TheCall, 2, 0, 1);
++  case Xtensa::BI__builtin_xtensa_mula_dd_ll_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_dd_lh_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_dd_hl_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_dd_hh_lddec:
++  case Xtensa::BI__builtin_xtensa_mula_dd_ll_ldinc:
++  case Xtensa::BI__builtin_xtensa_mula_dd_lh_ldinc:
++  case Xtensa::BI__builtin_xtensa_mula_dd_hl_ldinc:
++  case Xtensa::BI__builtin_xtensa_mula_dd_hh_ldinc:
++    return SemaBuiltinConstantArgRange(TheCall, 0, 0, 3) ||
++           SemaBuiltinConstantArgRange(TheCall, 2, 0, 1) ||
++           SemaBuiltinConstantArgRange(TheCall, 3, 2, 3);
++  }
++  return SemaBuiltinConstantArgRange(TheCall, i, l, u);
++}
++
+ /// SemaBuiltinCpuSupports - Handle __builtin_cpu_supports(char *).
+ /// This checks that the target supports __builtin_cpu_supports and
+ /// that the string argument is constant and valid.
