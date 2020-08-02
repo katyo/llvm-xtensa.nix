@@ -32,10 +32,10 @@ platform = if hostPlatform.isDarwin then "macos" else
 variant = toolchain.variants.${platform};
 in mkDerivation rec {
   pname = "gcc-xtensa-lx106";
-  version = toolchain.version;
+  inherit version;
 
   src = fetchurl {
-    url = "https://dl.espressif.com/dl/xtensa-lx106-elf-${toolchain.mkplatform platform}-${version}.tar.gz";
+    url = "https://dl.espressif.com/dl/xtensa-lx106-elf-${toolchain.mkplatform platform}-${toolchain.version}.tar.gz";
     sha256 = variant.sha256;
   };
 

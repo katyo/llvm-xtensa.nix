@@ -2,9 +2,9 @@
 with stdenv;
 let mkext = platform: if platform == "win32" then "zip" else "tar.gz";
 toolchains = {
-  "5.2.0" = rec {
+  "5.2.0" = {
     mkplatform = platform: if platform == "macos" then "osx" else platform;
-    mkname = platform: version: "${mkplatform platform}-${version}.${mkext platform}";
+    mkname = platform: version: "${platform}-${version}";
     version = "1.22.0-80-g6c4433a-5.2.0";
     variants = {
       linux32 = { sha256 = "0mdi7qcb5z5kfalmzvvr84f1a0bf59bw5zfsnsyc1py2zyamc1dl"; };
@@ -13,9 +13,9 @@ toolchains = {
       win32 = { sha256 = "192qh322xb1miyis6m5ri12dwn1443bf0dlh4gdr535axb5zq5zj"; };
     };
   };
-  "8.2.0" = rec {
+  "8.2.0" = {
     mkplatform = platform: if platform == "linux32" then "linux-i686" else if platform == "linux64" then "linux-amd64" else platform;
-    mkname = platform: version: "${version}-${mkplatform platform}.${mkext platform}";
+    mkname = platform: version: "${version}-${platform}";
     version = "gcc8_2_0-esp-2020r2";
     variants = {
       linux32 = { sha256 = "1ra09wb2awcmgiirq4b97mpgr1h55kbas2j8f0hxh3czkfycf0x0"; };
@@ -35,10 +35,10 @@ platform = if hostPlatform.isDarwin then "macos" else
 variant = toolchain.variants.${platform};
 in mkDerivation rec {
   pname = "gcc-xtensa-esp32";
-  version = toolchain.version;
+  inherit version;
 
   src = fetchurl {
-    url = "https://dl.espressif.com/dl/xtensa-esp32-elf-${toolchain.mkname platform version}";
+    url = "https://dl.espressif.com/dl/xtensa-esp32-elf-${toolchain.mkname (toolchain.mkplatform platform) toolchain.version}.${mkext platform}";
     sha256 = variant.sha256;
   };
 
