@@ -57,6 +57,7 @@ in stdenv.mkDerivation (rec {
 
   patches = [
     ./xtensa.patch
+    ./rustc.patch
   ];
 
   postPatch = optionalString stdenv.isDarwin ''
