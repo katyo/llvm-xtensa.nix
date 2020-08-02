@@ -40,4 +40,7 @@ self: super: with super; rec {
   gcc-xtensa-esp32_5_2_0 = gcc-xtensa-esp32.override { version = "5.2.0"; };
   gcc-xtensa-esp32_5 = gcc-xtensa-esp32_5_2_0;
   gcc-xtensa-esp32_legacy = gcc-xtensa-esp32_5;
+
+  # esp8266 rtos sdk
+  esp8266-rtos-sdk = callPackage ./espressif/esp8266-rtos-sdk.nix {};
 }
