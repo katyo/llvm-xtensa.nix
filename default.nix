@@ -28,6 +28,10 @@ self: super: with super; rec {
   gcc-xtensa-lx106_4 = gcc-xtensa-lx106_4_8_5;
   gcc-xtensa-lx106_legacy = gcc-xtensa-lx106_4;
 
+  gcc-xtensa-lx106_10_1_0 = callPackage ./esp-quick-toolchain/gcc-xtensa-lx106.nix {};
+  gcc-xtensa-lx106_10 = gcc-xtensa-lx106_10_1_0;
+  gcc-xtensa-lx106_latest = gcc-xtensa-lx106_10;
+
   # GCC-based esp32 toolchains
   gcc-xtensa-esp32_8_2_0 = callPackage ./espressif/gcc-xtensa-esp32.nix {};
   gcc-xtensa-esp32_8 = gcc-xtensa-esp32_8_2_0;
