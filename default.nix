@@ -15,9 +15,10 @@ self: super: with super; rec {
   llvm_xtensa = llvm_10_xtensa;
 
   # LLVM-based D-lang toolchain
-  ldc_xtensa = callPackage ./ldc {
+  ldc_1_22_xtensa = callPackage ./ldc {
     llvm_8 = llvm_10_xtensa;
   };
+  ldc_xtensa = ldc_1_22_xtensa;
 
   # Rust-lang compiler
   rust_1_45_xtensa = callPackage ./rust/1_45.nix {
