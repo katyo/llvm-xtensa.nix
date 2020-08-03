@@ -19,6 +19,15 @@ self: super: with super; rec {
     llvm_8 = llvm_10_xtensa;
   };
 
+  # Rust-lang compiler
+  rust_1_45_xtensa = callPackage ./rust/1_45.nix {
+    inherit (super.darwin.apple_sdk.frameworks) CoreFoundation Security;
+  };
+  rust_xtensa = rust_1_45_xtensa;
+
+  rustPackages_1_45_xtensa = rust_1_45_xtensa.packages.stable;
+  rustPackages_xtensa = rustPackages_1_45_xtensa;
+
   # GCC-based esp8266 toolchains
   gcc-xtensa-lx106_5_2_0 = callPackage ./espressif/gcc-xtensa-lx106.nix {};
   gcc-xtensa-lx106_5 = gcc-xtensa-lx106_5_2_0;

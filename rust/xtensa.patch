@@ -1,0 +1,347 @@
+diff --git a/src/librustc_llvm/build.rs b/src/librustc_llvm/build.rs
+index 21b80807..c38ecbcf 100644
+--- a/src/librustc_llvm/build.rs
++++ b/src/librustc_llvm/build.rs
+@@ -85,6 +85,7 @@ fn main() {
+         "sparc",
+         "nvptx",
+         "hexagon",
++        "xtensa",
+     ];
+ 
+     let mut version_cmd = Command::new(&llvm_config);
+diff --git a/src/librustc_llvm/lib.rs b/src/librustc_llvm/lib.rs
+index 9d23397a..f05fe5a8 100644
+--- a/src/librustc_llvm/lib.rs
++++ b/src/librustc_llvm/lib.rs
+@@ -170,4 +170,12 @@ pub fn initialize_available_targets() {
+         LLVMInitializeWebAssemblyTargetMC,
+         LLVMInitializeWebAssemblyAsmPrinter
+     );
++    init_target!(
++        llvm_component = "xtensa",
++        LLVMInitializeXtensaTargetInfo,
++        LLVMInitializeXtensaTarget,
++        LLVMInitializeXtensaTargetMC,
++        LLVMInitializeXtensaAsmPrinter,
++        LLVMInitializeXtensaAsmParser
++    );
+ }
+diff --git a/src/librustc_target/abi/call/mod.rs b/src/librustc_target/abi/call/mod.rs
+index 8f7e2bba..40755ffe 100644
+--- a/src/librustc_target/abi/call/mod.rs
++++ b/src/librustc_target/abi/call/mod.rs
+@@ -23,6 +23,7 @@ mod wasm32_bindgen_compat;
+ mod x86;
+ mod x86_64;
+ mod x86_win64;
++mod xtensa;
+ 
+ #[derive(Clone, Copy, PartialEq, Eq, Debug)]
+ pub enum PassMode {
+@@ -600,6 +601,7 @@ impl<'a, Ty> FnAbi<'a, Ty> {
+                 wasm32_bindgen_compat::compute_abi_info(self)
+             }
+             "wasm32" | "asmjs" => wasm32::compute_abi_info(cx, self),
++            "xtensa" => xtensa::compute_abi_info(self, 32),
+             a => return Err(format!("unrecognized arch \"{}\" in target specification", a)),
+         }
+ 
+diff --git a/src/librustc_target/abi/call/xtensa.rs b/src/librustc_target/abi/call/xtensa.rs
+new file mode 100644
+index 00000000..9b999dac
+--- /dev/null
++++ b/src/librustc_target/abi/call/xtensa.rs
+@@ -0,0 +1,98 @@
++// reference: https://github.com/MabezDev/llvm-project/blob/xtensa_release_9.0.1_with_rust_patches-31-05-2020-cherry-pick/clang/lib/CodeGen/TargetInfo.cpp#L9668-L9767
++
++use crate::abi::call::{ArgAbi, FnAbi, Reg, Uniform};
++use crate::abi::{Abi, Size};
++
++const NUM_ARG_GPRS: u64 = 6;
++const MAX_ARG_IN_REGS_SIZE: u64 = 4 * 32;
++const MAX_RET_IN_REGS_SIZE: u64 = 2 * 32;
++
++fn classify_ret_ty<Ty>(arg: &mut ArgAbi<'_, Ty>, xlen: u64) {
++    if arg.is_ignore() {
++        return;
++    }
++
++    // The rules for return and argument types are the same,
++    // so defer to `classify_arg_ty`.
++    let mut arg_gprs_left = 2;
++    let fixed = true;
++    classify_arg_ty(arg, xlen, fixed, &mut arg_gprs_left);
++}
++
++fn classify_arg_ty<Ty>(arg: &mut ArgAbi<'_, Ty>, xlen: u64, fixed: bool, arg_gprs_left: &mut u64) {
++    assert!(*arg_gprs_left <= NUM_ARG_GPRS, "Arg GPR tracking underflow");
++
++    // Ignore empty structs/unions.
++    if arg.layout.is_zst() {
++        return;
++    }
++
++    let size = arg.layout.size.bits();
++    let needed_align = arg.layout.align.abi.bits();
++    let mut must_use_stack = false;
++
++    // Determine the number of GPRs needed to pass the current argument
++    // according to the ABI. 2*XLen-aligned varargs are passed in "aligned"
++    // register pairs, so may consume 3 registers.
++    let mut needed_arg_gprs = 1u64;
++
++    if !fixed && needed_align == 2 * xlen {
++        needed_arg_gprs = 2 + (*arg_gprs_left % 2);
++    } else if size > xlen && size <= MAX_ARG_IN_REGS_SIZE {
++        needed_arg_gprs = (size + xlen - 1) / xlen;
++    }
++
++    if needed_arg_gprs > *arg_gprs_left {
++        must_use_stack = true;
++        needed_arg_gprs = *arg_gprs_left;
++    }
++    *arg_gprs_left -= needed_arg_gprs;
++
++    if !arg.layout.is_aggregate() && !matches!(arg.layout.abi, Abi::Vector { .. }) {
++        // All integral types are promoted to `xlen`
++        // width, unless passed on the stack.
++        if size < xlen && !must_use_stack {
++            arg.extend_integer_width_to(xlen);
++            return;
++        }
++
++        return;
++    }
++
++    // Aggregates which are <= 4 * 32 will be passed in
++    // registers if possible, so coerce to integers.
++    if size as u64 <= MAX_ARG_IN_REGS_SIZE {
++        let alignment = arg.layout.align.abi.bits();
++
++        // Use a single `xlen` int if possible, 2 * `xlen` if 2 * `xlen` alignment
++        // is required, and a 2-element `xlen` array if only `xlen` alignment is
++        // required.
++        if size <= xlen {
++            arg.cast_to(Reg::i32());
++            return;
++        } else if alignment == 2 * xlen {
++            arg.cast_to(Reg::i64());
++            return;
++        } else {
++            let total = Size::from_bits(((size + xlen - 1) / xlen) * xlen);
++            arg.cast_to(Uniform { unit: Reg::i32(), total });
++            return;
++        }
++    }
++
++    arg.make_indirect();
++}
++
++pub fn compute_abi_info<Ty>(fn_abi: &mut FnAbi<'_, Ty>, xlen: u64) {
++    classify_ret_ty(&mut fn_abi.ret, xlen);
++
++    let is_ret_indirect =
++        fn_abi.ret.is_indirect() || fn_abi.ret.layout.size.bits() > MAX_RET_IN_REGS_SIZE;
++
++    let mut arg_gprs_left = if is_ret_indirect { NUM_ARG_GPRS - 1 } else { NUM_ARG_GPRS };
++
++    for arg in &mut fn_abi.args {
++        let fixed = true;
++        classify_arg_ty(arg, xlen, fixed, &mut arg_gprs_left);
++    }
++}
+diff --git a/src/librustc_target/spec/mod.rs b/src/librustc_target/spec/mod.rs
+index 961a438f..e901f6ee 100644
+--- a/src/librustc_target/spec/mod.rs
++++ b/src/librustc_target/spec/mod.rs
+@@ -655,3 +655,6 @@ supported_targets! {
+     ("riscv64gc-unknown-linux-gnu", riscv64gc_unknown_linux_gnu),
++
++    ("xtensa-esp8266-none-elf", xtensa_esp8266_none_elf),
++    ("xtensa-esp32-none-elf", xtensa_esp32_none_elf),
+
+     ("aarch64-unknown-none", aarch64_unknown_none),
+diff --git a/src/librustc_target/spec/xtensa_esp32_none_elf.rs b/src/librustc_target/spec/xtensa_esp32_none_elf.rs
+new file mode 100644
+index 00000000..f8912229
+--- /dev/null
++++ b/src/librustc_target/spec/xtensa_esp32_none_elf.rs
+@@ -0,0 +1,47 @@
++use crate::spec::{abi::Abi, LinkerFlavor, PanicStrategy, Target, TargetOptions, TargetResult, RelocModel};
++
++pub fn target() -> TargetResult {
++    Ok(Target {
++        llvm_target: "xtensa-none-elf".to_string(),
++        target_endian: "little".to_string(),
++        target_pointer_width: "32".to_string(),
++        target_c_int_width: "32".to_string(),
++        data_layout: "e-m:e-p:32:32-i8:8:32-i16:16:32-i64:64-n32".to_string(),
++        arch: "xtensa".to_string(),
++        target_os: "none".to_string(),
++        target_env: String::new(),
++        target_vendor: String::new(),
++        linker_flavor: LinkerFlavor::Gcc,
++
++        options: TargetOptions {
++            executables: true,
++            cpu: "esp32".to_string(),
++            linker: Some("xtensa-esp32-elf-gcc".to_string()),
++
++            max_atomic_width: Some(32),
++
++            // Because these devices have very little resources having an
++            // unwinder is too onerous so we default to "abort" because the
++            // "unwind" strategy is very rare.
++            panic_strategy: PanicStrategy::Abort,
++
++            // Similarly, one almost always never wants to use relocatable
++            // code because of the extra costs it involves.
++            relocation_model: RelocModel::Static,
++
++            // See the thumb_base.rs file for an explanation of this value
++            emit_debug_gdb_scripts: false,
++
++            abi_blacklist: vec![
++                Abi::Stdcall,
++                Abi::Fastcall,
++                Abi::Vectorcall,
++                Abi::Thiscall,
++                Abi::Win64,
++                Abi::SysV64,
++            ],
++
++            ..Default::default()
++        },
++    })
++}
+diff --git a/src/librustc_target/spec/xtensa_esp8266_none_elf.rs b/src/librustc_target/spec/xtensa_esp8266_none_elf.rs
+new file mode 100644
+index 00000000..769d00b6
+--- /dev/null
++++ b/src/librustc_target/spec/xtensa_esp8266_none_elf.rs
+@@ -0,0 +1,47 @@
++use crate::spec::{abi::Abi, LinkerFlavor, PanicStrategy, Target, TargetOptions, TargetResult, RelocModel};
++
++pub fn target() -> TargetResult {
++    Ok(Target {
++        llvm_target: "xtensa-none-elf".to_string(),
++        target_endian: "little".to_string(),
++        target_pointer_width: "32".to_string(),
++        target_c_int_width: "32".to_string(),
++        data_layout: "e-m:e-p:32:32-i8:8:32-i16:16:32-i64:64-n32".to_string(),
++        arch: "xtensa".to_string(),
++        target_os: "none".to_string(),
++        target_env: String::new(),
++        target_vendor: String::new(),
++        linker_flavor: LinkerFlavor::Gcc,
++
++        options: TargetOptions {
++            executables: true,
++            cpu: "esp8266".to_string(),
++            linker: Some("xtensa-lx106-elf-gcc".to_string()),
++
++            max_atomic_width: Some(32),
++
++            // Because these devices have very little resources having an
++            // unwinder is too onerous so we default to "abort" because the
++            // "unwind" strategy is very rare.
++            panic_strategy: PanicStrategy::Abort,
++
++            // Similarly, one almost always never wants to use relocatable
++            // code because of the extra costs it involves.
++            relocation_model: RelocModel::Static,
++
++            // See the thumb_base.rs file for an explanation of this value
++            emit_debug_gdb_scripts: false,
++
++            abi_blacklist: vec![
++                Abi::Stdcall,
++                Abi::Fastcall,
++                Abi::Vectorcall,
++                Abi::Thiscall,
++                Abi::Win64,
++                Abi::SysV64,
++            ],
++
++            ..Default::default()
++        },
++    })
++}
+diff --git a/src/librustc_target/spec/xtensa_none_elf.rs b/src/librustc_target/spec/xtensa_none_elf.rs
+new file mode 100644
+index 00000000..1d168d41
+--- /dev/null
++++ b/src/librustc_target/spec/xtensa_none_elf.rs
+@@ -0,0 +1,46 @@
++use crate::spec::{abi::Abi, LinkerFlavor, PanicStrategy, Target, TargetOptions, TargetResult, RelocModel};
++
++pub fn target() -> TargetResult {
++    Ok(Target {
++        llvm_target: "xtensa-none-elf".to_string(),
++        target_endian: "little".to_string(),
++        target_pointer_width: "32".to_string(),
++        target_c_int_width: "32".to_string(),
++        data_layout: "e-m:e-p:32:32-i8:8:32-i16:16:32-i64:64-n32".to_string(),
++        arch: "xtensa".to_string(),
++        target_os: "none".to_string(),
++        target_env: String::new(),
++        target_vendor: String::new(),
++        linker_flavor: LinkerFlavor::Gcc,
++
++        options: TargetOptions {
++            executables: true,
++            linker: Some("xtensa-esp32-elf-gcc".to_string()),
++
++            max_atomic_width: Some(32),
++
++            // Because these devices have very little resources having an
++            // unwinder is too onerous so we default to "abort" because the
++            // "unwind" strategy is very rare.
++            panic_strategy: PanicStrategy::Abort,
++
++            // Similarly, one almost always never wants to use relocatable
++            // code because of the extra costs it involves.
++            relocation_model: RelocModel::Static,
++
++            // See the thumb_base.rs file for an explanation of this value
++            emit_debug_gdb_scripts: false,
++
++            abi_blacklist: vec![
++                Abi::Stdcall,
++                Abi::Fastcall,
++                Abi::Vectorcall,
++                Abi::Thiscall,
++                Abi::Win64,
++                Abi::SysV64,
++            ],
++
++            ..Default::default()
++        },
++    })
++}
+diff --git a/src/rustllvm/PassWrapper.cpp b/src/rustllvm/PassWrapper.cpp
+index 41b14714..b8e4a0a3 100644
+--- a/src/rustllvm/PassWrapper.cpp
++++ b/src/rustllvm/PassWrapper.cpp
+@@ -253,6 +253,12 @@ void LLVMRustAddLastExtensionPasses(
+ #define SUBTARGET_HEXAGON
+ #endif
+ 
++#ifdef LLVM_COMPONENT_XTENSA
++#define SUBTARGET_XTENSA SUBTARGET(XTENSA)
++#else
++#define SUBTARGET_XTENSA
++#endif
++
+ #define GEN_SUBTARGETS                                                         \
+   SUBTARGET_X86                                                                \
+   SUBTARGET_ARM                                                                \
+@@ -265,6 +271,7 @@ void LLVMRustAddLastExtensionPasses(
+   SUBTARGET_SPARC                                                              \
+   SUBTARGET_HEXAGON                                                            \
+   SUBTARGET_RISCV                                                              \
++  SUBTARGET_XTENSA                                                             \
+ 
+ #define SUBTARGET(x)                                                           \
+   namespace llvm {                                                             \
